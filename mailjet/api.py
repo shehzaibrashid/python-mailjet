@@ -41,7 +41,13 @@ class ApiMethodFunction(object):
             options=options,
             postdata=postdata,
         )
-        return json.load(response)
+        r = response.read()
+
+        try:
+	    obj = json.loads(r)
+	except (ValueError):
+	    return None
+	return obj
 
     def __unicode__(self):
         return self.function
