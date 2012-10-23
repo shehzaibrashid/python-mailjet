@@ -24,7 +24,8 @@ i.e.
     export MAILJET_SECRET_KEY=something_else
 
 It is also possible to inject your API keys in the constructor, like so:
-api = mailjet.Api(access_key='499c...6a8f4', secret_key='7bb4...c821')
+
+    api = mailjet.Api(access_key='499c...6a8f4', secret_key='7bb4...c821')
 
 Usage
 =====
