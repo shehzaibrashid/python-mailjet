@@ -1,5 +1,5 @@
-Introduction
-============
+[API v1] Mailjet Python API Wrapper
+========================
 
 `mailjet` is a library to access the Mailjet REST API.
 
