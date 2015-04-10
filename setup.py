@@ -17,6 +17,7 @@ setup(
     license='BSD',
     packages=['mailjet'],
     long_description=long_description,
+    install_requires=['requests',],
     test_suite='nose.collector',
     tests_require=['nose'],
     classifiers=[
