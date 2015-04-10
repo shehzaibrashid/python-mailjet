@@ -12,6 +12,6 @@ SETTINGS_PREFIX = 'MAILJET_'
 API_KEY = ''
 SECRET_KEY = ''
 TIMEOUT = 10
-VERSION = 0.1
-URL = 'https://api.mailjet.com/%(VERSION)s/'
+VERSION = 3
+URL = 'https://api.mailjet.com/v%(VERSION)s/REST/'
 
