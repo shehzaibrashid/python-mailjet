@@ -7,14 +7,14 @@ else:
     long_description = 'See http://pypi.python.org/pypi/mailjet/'
 
 setup(
-    name = 'mailjet',
-    version = '1.3',
-    author = 'Rick van Hattem',
-    author_email = 'Rick.van.Hattem@Fawo.nl',
-    description = '''mailjet is a django app to implement the mailjet REST
+    name='mailjet',
+    version='1.4',
+    author='Rick van Hattem',
+    author_email='Rick.van.Hattem@Fawo.nl',
+    description='''mailjet is a django app to implement the mailjet v3 REST
         API''',
     url='https://github.com/WoLpH/mailjet',
-    license = 'BSD',
+    license='BSD',
     packages=['mailjet'],
     long_description=long_description,
     test_suite='nose.collector',
@@ -22,6 +22,6 @@ setup(
     classifiers=[
         'License :: OSI Approved :: BSD License',
     ],
-    data_files = [('', ['LICENSE'])],
+    data_files=[('', ['LICENSE'])],
 )
 
