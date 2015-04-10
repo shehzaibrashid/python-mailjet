@@ -1,54 +1,64 @@
 from mailjet.connection import Connection
-import json
+
 
 class Api(object):
     def __init__(self, connection=None, access_key=None, secret_key=None):
-        if not connection:
+        if connection is None:
             connection = Connection.get_connection(access_key, secret_key)
-
+            print connection
         self.connection = connection
 
-    def __getattr__(self, method):
-        return ApiMethod(self, method)
-
-class ApiMethod(object):
-    def __init__(self, api, method):
-        self.api = api
-        self.method = method
-
     def __getattr__(self, function):
-        return ApiMethodFunction(self, function)
+        return ApiFunction(self, function)
+
+
+class ApiFunction(object):
+    def __init__(self, api, function):
+        self.api = api
+        self.function = function
+        print self.function
+
+    def __getattr__(self, method):
+        return ApiFunctionMethod(self, method)
 
     def __unicode__(self):
-        return self.method
+        return self.function
 
-class ApiMethodFunction(object):
-    def __init__(self, method, function):
-        self.method = method
+    def __str__(self):
+        return self.function
+
+
+class ApiFunctionMethod(object):
+    def __init__(self, function, method):
         self.function = function
+        self.method = method
+        print self.method
 
     def __call__(self, **kwargs):
-        if kwargs.pop('method', 'GET') == 'POST':
+        if self.method == 'post':
             postdata = kwargs
             options = None
         else:
             options = kwargs
             postdata = None
+        print self.function.api.connection
 
-        response = self.method.api.connection.open(
-            self.method,
+        response = self.function.api.connection.open(
             self.function,
+            self.method,
             options=options,
             postdata=postdata,
         )
-        r = response.read()
 
         try:
-	    obj = json.loads(r)
-	except (ValueError):
-	    return None
-	return obj
+            obj = response.json()
+        except ValueError:
+            return None
+        return obj
 
     def __unicode__(self):
-        return self.function
+        return self.method
+
+    def __str__(self):
+        return self.method
 
